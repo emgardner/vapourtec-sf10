@@ -1,0 +1,26 @@
+[package]
+name = "vapourtec"
+version = "0.1.0"
+edition = "2021"
+description = "An unofficial Rust library for the Vapourtec SF10 reagent pump"
+readme = "README.md"
+keywords = ["vapourtec", "sf10", "serial", "pump"]
+categories = ["hardware-support"]
+include = ["Cargo.toml", "README.md", "src/**", "tests/**"]
+
+[features]
+default = []
+async = ["dep:tokio"]
+serialport = ["dep:serialport"]
+tokio-serial = ["async", "dep:tokio-serial"]
+
+[dependencies]
+serialport = { version = "4.10.1", default-features = false, optional = true }
+tokio = { version = "1.54.1", default-features = false, features = ["io-util", "time"], optional = true }
+tokio-serial = { version = "5.5.0", default-features = false, optional = true }
+
+[dev-dependencies]
+tokio = { version = "1.54.1", default-features = false, features = ["io-util", "macros", "rt", "sync", "time", "test-util"] }
+
+[package.metadata.docs.rs]
+all-features = true
